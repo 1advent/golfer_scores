@@ -1,6 +1,7 @@
 <?php
 // Load environment variables
 $dotenv = fopen('.env', 'r');
+echo $dotenv;
 while (!feof($dotenv)) {
   $line = trim(fgets($dotenv));
   if ($line && strpos($line, '=') !== false) {
