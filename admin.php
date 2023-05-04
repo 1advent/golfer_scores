@@ -2,6 +2,14 @@
 $page_name = "Scorecard";
 require('header.php');
 
+//make a new player:
+?>
+<form action="admin.php" method="post">
+<label for="player">New Player Name:</label>
+<input type="text" name="newplayer" id="newplayer" value="John Doe/Jane Doe">
+<input type="submit" value="Add Player">
+<br>
+<?php
 $players = array(
   "John Doe/Jane Doe",
   "Mike Smith/Mary Smith",
@@ -12,9 +20,20 @@ if (isset($_POST['player']) && isset($_POST['scores'])) {
   $player = $_POST['player'];
   $scores = $_POST['scores'];
 
-    // save the scores
+    //check if player exists
+    $sql = "SELECT * FROM golfer_data WHERE player='$player'";
+    $result = $conn->query($sql);
+    //make a new row if they do not
+    if ($result->num_rows == 0) {
+      $sql = "INSERT INTO golfer_data (player, scores) VALUES ('$player', '$scores')";
+      if ($conn->query($sql) === TRUE) {
+        echo "New record created successfully";
+      } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+      }
+    }
     //update the record based on the player_name
-    $sql = "UPDATE scorecard SET scores='$scores' WHERE player='$player'";
+    $sql = "UPDATE golfer_data SET scores='$scores' WHERE player='$player'";
     if ($conn->query($sql) === TRUE) {
       echo "New record created successfully";
     } else {
