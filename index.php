@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html>
+<?php
+require('database_stuffs.php');
+?>
+
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
