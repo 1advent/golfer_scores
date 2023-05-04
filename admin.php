@@ -13,7 +13,13 @@ if (isset($_POST['player']) && isset($_POST['scores'])) {
   $scores = $_POST['scores'];
 
     // save the scores
-    $sql = "INSERT INTO scorecard (player, scores) VALUES ('$player', '$scores')";
+    //update the record based on the player_name
+    $sql = "UPDATE scorecard SET scores='$scores' WHERE player='$player'";
+    if ($conn->query($sql) === TRUE) {
+      echo "New record created successfully";
+    } else {
+      echo "Error: " . $sql . "<br>" . $conn->error;
+    }
 
   echo "Scores saved for $player";
 } else {
