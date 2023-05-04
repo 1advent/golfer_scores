@@ -21,12 +21,8 @@ require('database_stuffs.php');
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="/admin.php">Admin <span class="sr-only"></span></a>
-      </li>
+    <li <?php if($_SERVER['SCRIPT_NAME']=="/index.php") { ?>  class="nav-item active"   <?php   } else { ?> class="nav-item" <?php }   ?>><a href="/" class="nav-link"><b>Home</b></a></li>
+        <li <?php if($_SERVER['SCRIPT_NAME']=="/admin.php") { ?>  class="nav-item active"   <?php   } else { ?> class="nav-item" <?php }   ?>><a href="admin.php" class="nav-link"><b>Admin</b></a></li>
     </ul>
   </div>
 </nav>
