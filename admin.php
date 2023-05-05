@@ -78,6 +78,7 @@ if ($result->num_rows > 0) {
     <div class="row">
         <div class="col-lg-4 col-md-4 col-sm-12">
           <select name='selected_player'>
+          <option value=''>Select a player</option>
           <?php
             foreach ($players as $player) {
               echo "<option value='$player'>$player</option>";
