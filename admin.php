@@ -4,6 +4,18 @@ require('header.php');
 
 
 //make a new player:
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  // Retrieve the new player name from the form data
+  $newplayer = mysqli_real_escape_string($conn, $_POST['newplayer']);
+
+  // Insert the new player into the database
+  $sql = "INSERT INTO ".$table." (players) VALUES ('$newplayer')";
+  if ($conn->query($sql) === TRUE) {
+      echo "New player added successfully";
+  } else {
+      echo "Error: " . $sql . "<br>" . $conn->error;
+  }
+}
 ?>
 <!--script for updating information in the database-->
 <script>
