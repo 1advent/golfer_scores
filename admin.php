@@ -49,11 +49,7 @@ require('header.php');
 
 
 
-<form action="admin.php" method="post">
-<label for="player">New Player Name:</label>
-<input type="text" name="newplayer" id="newplayer" value="John Doe/Jane Doe">
-<input type="submit" value="Add Player">
-<br>
+
 <?php
 //create select box for players
 $sql = "select players from ".$table;
@@ -97,6 +93,13 @@ if ($result->num_rows > 0) {
             <br>
             <br>
             <button type="submit" class="btn btn-primary">Add New Team</button>
+            <br>
+            <br>
+            <form action="admin.php" method="post">
+              <label for="player">New Player Name:</label>
+              <input type="text" name="newplayer" id="newplayer" value="John Doe/Jane Doe">
+              <input type="submit" value="Add Player">
+            </form>
           </div>
 <?php
 require('footer.php');
