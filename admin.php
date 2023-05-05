@@ -10,6 +10,7 @@ require('header.php');
 <input type="submit" value="Add Player">
 <br>
 <?php
+//create select box for players
 $sql = "select players from ".$table;
 $result = $conn->query($sql);
 $players = array();
