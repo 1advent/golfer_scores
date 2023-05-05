@@ -9,19 +9,31 @@ require('header.php');
 <script>
  $(function() {
 //twitter bootstrap script
- $("button#submitUpdate").click(function(){
-         $.ajax({
-     type: "POST",
- url: "update_tables.php",
- data: $('form.form-horizontal').serialize(),
-         success: function(msg){
-                  alert("Updated.");
-         },
- error: function(){
- alert("failure");
- }
-       });
- });
+$("button#submitUpdate").click(function(){
+    var formData = $('form.form-horizontal').serialize();
+    console.log(formData); // Log the form data being sent
+    $.ajax({
+        type: "POST",
+        url: "update_tables.php",
+        data: { 
+          selected_player: $("select[name='selected_player']").val(),
+          golferScore: $("#golferScore").val(),
+          nineHandicap: $("#nineHandicap").val(),
+          handicap: $("#handicap").val(),
+          par: $("#par").val()
+        },
+        dataType: "json",
+        success: function(data) {
+            console.log(data); // Log the server response to the console
+            alert("Updated.");
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log(textStatus, errorThrown);
+            alert("failure");
+        }
+    });
+});
+
  
  // AJAX request to get player info based on selected player
  $("select[name='selected_player']").change(function() {
