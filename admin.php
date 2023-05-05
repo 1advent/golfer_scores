@@ -16,6 +16,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       echo "Error: " . $sql . "<br>" . $conn->error;
   }
 }
+//deal with csv:
+if (isset($_FILES['csv_file'])) {
+  // Check for errors in the uploaded file
+  if ($_FILES['csv_file']['error'] !== UPLOAD_ERR_OK) {
+    die('Upload failed with error code ' . $_FILES['csv_file']['error']);
+  }
+  
+  // Open the uploaded CSV file
+  $handle = fopen($_FILES['csv_file']['tmp_name'], 'r');
+  
+  // Process the CSV file line by line
+  while (($data = fgetcsv($handle)) !== false) {
+    // Do something with the CSV data
+    $name = $data[0];
+    $score = $data[1];
+    // Insert the data into the database
+    // ...
+  }
+  
+  fclose($handle);
+  echo 'CSV upload and processing completed successfully.';
+}
+
+
 ?>
 <!--script for updating information in the database-->
 <script>
@@ -114,7 +138,11 @@ if ($result->num_rows > 0) {
           </form>
           </div>
           <div class="col-lg-4 col-md-4 col-sm-12">
-            <button type="upload" class="btn btn-primary">Upload CSV</button>
+            <form action="process_csv.php" method="post" enctype="multipart/form-data">
+              <label for="csv_file">Select a CSV file:</label>
+              <input type="file" name="csv_file" id="csv_file">
+              <input type="submit" value="Upload CSV">
+            </form>
             <br>
             <br>
             <button type="submit" class="btn btn-primary">Add New Team</button>
