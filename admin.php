@@ -23,29 +23,35 @@ if ($result->num_rows > 0) {
 <div class="container features">
     <div class="row">
         <div class="col-lg-4 col-md-4 col-sm-12">
-<select name='player'>
-<?php
-  foreach ($players as $player) {
-    echo "<option value='$player'>$player</option>";
-  }
-?>
-</select>
-<form>
-  <div class="form-group">
-    <label for="score">Golfer Score: </label> <input type='number' class="form-control" id="score"/>
-  </div>
-  <div class="form-group">
-      <label for="9holeHandicap">9-Hole Handicap: </label> <input type='number' class="form-control" id="9holeHandicap"/>
-  </div>
-  <div class="form-group">
-      <label for="handicap">Handicap: </label> <input type='number' class="form-control" id="handicap"/>
-  </div>
-  <div class="form-group">
-      <label for="par">Par: </label> <input type='number' class="form-control" id="par"/>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-</div>
+          <select name='player'>
+          <?php
+            foreach ($players as $player) {
+              echo "<option value='$player'>$player</option>";
+            }
+          ?>
+          </select>
+          <form>
+            <div class="form-group">
+              <label for="score">Golfer Score: </label> <input type='number' class="form-control" id="score"/>
+            </div>
+            <div class="form-group">
+                <label for="9holeHandicap">9-Hole Handicap: </label> <input type='number' class="form-control" id="9holeHandicap"/>
+            </div>
+            <div class="form-group">
+                <label for="handicap">Handicap: </label> <input type='number' class="form-control" id="handicap"/>
+            </div>
+            <div class="form-group">
+                <label for="par">Par: </label> <input type='number' class="form-control" id="par"/>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <button type="upload" class="btn btn-primary">Upload CSV</button>
+            <br>
+            <br>
+            <button type="submit" class="btn btn-primary">Add New Team</button>
+          </div>
 <?php
 require('footer.php');
 ?>
