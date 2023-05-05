@@ -34,8 +34,8 @@ require('header.php');
         success: function(data) {
             console.log(data); // Log the server response to the console
             // Populate the form fields with the retrieved player info
-            $("#score").val(data.score);
-            $("#NineholeHandicap").val(data['NineholeHandicap']);
+            $("#golferScore").val(data.golferScore);
+            $("#nineHandicap").val(data['nineHandicap']);
             $("#handicap").val(data.handicap);
             $("#par").val(data.par);
         },
@@ -78,10 +78,10 @@ if ($result->num_rows > 0) {
           </select>
           <form>
             <div class="form-group">
-              <label for="score">Golfer Score: </label> <input type='number' class="form-control" id="score"/>
+              <label for="golferScore">Golfer Score: </label> <input type='number' class="form-control" id="golferScore"/>
             </div>
             <div class="form-group">
-                <label for="NineholeHandicap">9-Hole Handicap: </label> <input type='number' class="form-control" id="NineholeHandicap"/>
+                <label for="nineHandicap">9-Hole Handicap: </label> <input type='number' class="form-control" id="nineHandicap"/>
             </div>
             <div class="form-group">
                 <label for="handicap">Handicap: </label> <input type='number' class="form-control" id="handicap"/>
