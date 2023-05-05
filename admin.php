@@ -10,57 +10,42 @@ require('header.php');
 <input type="submit" value="Add Player">
 <br>
 <?php
-$players = array(
-  "John Doe/Jane Doe",
-  "Mike Smith/Mary Smith",
-  "Anthony Jones/Anne Jones"
-);
-
-if (isset($_POST['player']) && isset($_POST['scores'])) {
-  $player = $_POST['player'];
-  $scores = $_POST['scores'];
-
-    //check if player exists
-    $sql = "SELECT * FROM golfer_data WHERE player='$player'";
-    $result = $conn->query($sql);
-    //make a new row if they do not
-    if ($result->num_rows == 0) {
-      $sql = "INSERT INTO golfer_data (player, scores) VALUES ('$player', '$scores')";
-      if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
-      } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-      }
-    }
-    //update the record based on the player_name
-    $sql = "UPDATE golfer_data SET scores='$scores' WHERE player='$player'";
-    if ($conn->query($sql) === TRUE) {
-      echo "New record created successfully";
-    } else {
-      echo "Error: " . $sql . "<br>" . $conn->error;
-    }
-
-  echo "Scores saved for $player";
-} else {
-  // show the scorecard form
-  echo "<form method='post'>";
-  echo "<select name='player'>";
+$sql = "select players from ".$table;
+$result = $conn->query($sql);
+$players = array();
+if ($result->num_rows > 0) {
+  while($row = $result->fetch_assoc()) {
+    //add row["player"] to $players array
+    array_push($players,$row["players"]);
+  }
+}
+?>
+<div class="container features">
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-12">
+<select name='player'>
+<?php
   foreach ($players as $player) {
     echo "<option value='$player'>$player</option>";
   }
-  echo "</select>";
-
-  for ($i = 1; $i <= 18; $i++) {
-    echo "<p>Hole $i:</p>";
-    echo "<label>Golfer Score: <input type='number' name='scores[$i][golferScore]' /></label>";
-    echo "<label>9-Hole Handicap: <input type='number' name='scores[$i][nineHandicap]' /></label>";
-    echo "<label>Handicap: <input type='number' name='scores[$i][handicap]' /></label>";
-    echo "<label>Par: <input type='number' name='scores[$i][par]' /></label>";
-  }
-
-  echo "<input type='submit' value='Submit Scores' />";
-  echo "</form>";
-}
-
+?>
+</select>
+<form>
+  <div class="form-group">
+    <label for="score">Golfer Score: </label> <input type='number' class="form-control" id="score"/>
+  </div>
+  <div class="form-group">
+      <label for="9holeHandicap">9-Hole Handicap: </label> <input type='number' class="form-control" id="9holeHandicap"/>
+  </div>
+  <div class="form-group">
+      <label for="handicap">Handicap: </label> <input type='number' class="form-control" id="handicap"/>
+  </div>
+  <div class="form-group">
+      <label for="par">Par: </label> <input type='number' class="form-control" id="par"/>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+<?php
 require('footer.php');
 ?>

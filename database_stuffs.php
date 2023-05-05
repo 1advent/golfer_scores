@@ -1,7 +1,6 @@
 <?php
 // Load environment variables
 $dotenv = fopen('.env', 'r');
-echo $dotenv;
 while (!feof($dotenv)) {
   $line = trim(fgets($dotenv));
   if ($line && strpos($line, '=') !== false) {
@@ -16,6 +15,7 @@ $host = $_ENV['DB_HOST'];
 $username = $_ENV['DB_USERNAME'];
 $password = $_ENV['DB_PASSWORD'];
 $database = $_ENV['DB_DATABASE'];
+$table = $_ENV['DB_TABLE'];
 
 // Create connection
 $conn = new mysqli($host, $username, $password, $database);
