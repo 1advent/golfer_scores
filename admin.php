@@ -141,17 +141,16 @@ if ($result->num_rows > 0) {
             <form action="process_csv.php" method="post" enctype="multipart/form-data">
               <label for="csv_file">Select a CSV file:</label>
               <input type="file" name="csv_file" id="csv_file">
-              <input type="submit" value="Upload CSV">
+              <br><br>
+              <input type="submit" class="btn btn-primary" value="Upload CSV">
             </form>
-            <br>
-            <br>
-            <button type="submit" class="btn btn-primary">Add New Team</button>
             <br>
             <br>
             <form action="admin.php" method="post">
               <label for="player">New Player Name:</label>
-              <input type="text" name="newplayer" id="newplayer" value="John Doe/Jane Doe">
-              <input type="submit" value="Add Player">
+              <input type="text" name="newplayer" id="newplayer" value="">
+              <br><br>
+              <input type="submit" class="btn btn-primary" value="Add Player">
             </form>
           </div>
 <?php
