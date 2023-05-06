@@ -1,5 +1,5 @@
 <?php
-$page_name = "Scorecard";
+$page_name = "Admin Access";
 require('header.php');
 
 
