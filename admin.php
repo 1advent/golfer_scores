@@ -29,8 +29,8 @@ if (isset($_FILES['csv_file'])) {
   // Process the CSV file line by line
   while (($data = fgetcsv($handle)) !== false) {
     // Do something with the CSV data
-    $name = $data[0];
-    $score = $data[1];
+    $name = $data[0].",".$data[1];
+    $score = $data[2];
     // Insert the data into the database
     // ...
   }
